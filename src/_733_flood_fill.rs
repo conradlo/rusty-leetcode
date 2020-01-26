@@ -1,5 +1,5 @@
 #[allow(dead_code)]
-pub fn flood_fill(image: Vec<Vec<i32>>, sr: i32, sc: i32, new_color: i32) -> Vec<Vec<i32>> {
+pub fn flood_fill_1(image: Vec<Vec<i32>>, sr: i32, sc: i32, new_color: i32) -> Vec<Vec<i32>> {
     // image[row_idx][col_idx]
     let row_count = image.len();
     let col_count = image[0].len();
@@ -55,6 +55,63 @@ pub fn flood_fill(image: Vec<Vec<i32>>, sr: i32, sc: i32, new_color: i32) -> Vec
     new_image
 }
 
+#[allow(dead_code)]
+pub fn flood_fill(image: Vec<Vec<i32>>, sr: i32, sc: i32, new_color: i32) -> Vec<Vec<i32>> {
+    // for bounds checking
+    let row_count = image.len();
+    let col_count = image[0].len();
+
+    // `usize` is more convenient than `i32`
+    // as we need to perform a lot of vector access
+    let start_r = sr as usize;
+    let start_c = sc as usize;
+
+    let start_color = image[start_r][start_c];
+    if start_color == new_color {
+        // do nothing, this guard is important for the DFS below
+        // this avoids endless loop when the startng pixel
+        // has the same color value as the `new_color: i32`
+        return image;
+    }
+    // if we modify the `image: Vec<Vec<i32>>` directly, we do not need to create another 2D array
+    // hence we need to create a mutable reference
+    // without it the rust compiler won't let us modify the input image: `Vec<Vec<i32>>`
+    let mut new_image = image;
+
+    // DFS
+
+    let mut stack = vec![(start_r, start_c)];
+
+    while stack.len() > 0 {
+        let &(r, c) = stack.last().unwrap();
+        // by checking the pixel's color we avoid DFS on
+        // 1. visited pixels (but visited pixels could be pushed onto the stack more than 1 time)
+        // 2. pixels that are not the same color as the starting pixel
+        if new_image[r][c] == start_color {
+            new_image[r][c] = new_color;
+            if r > 0 {
+                // up
+                stack.push((r - 1, c));
+            }
+            if r < row_count - 1 {
+                // down
+                stack.push((r + 1, c));
+            }
+            if c > 0 {
+                // left
+                stack.push((r, c - 1));
+            }
+            if c < col_count - 1 {
+                // right
+                stack.push((r, c + 1));
+            }
+        } else {
+            stack.pop();
+        }
+    }
+
+    new_image
+}
 // cargo watch -x "test _733_flood_fill -- --nocapture"
 #[cfg(test)]
 mod tests {
@@ -66,6 +123,10 @@ mod tests {
             (
                 (vec![vec![1, 1, 1], vec![1, 1, 0], vec![1, 0, 1]], (1, 1, 2)),
                 vec![vec![2, 2, 2], vec![2, 2, 0], vec![2, 0, 1]],
+            ),
+            (
+                (vec![vec![0, 0, 0], vec![0, 1, 1]], (1, 1, 1)),
+                vec![vec![0, 0, 0], vec![0, 1, 1]],
             ),
             (
                 (
