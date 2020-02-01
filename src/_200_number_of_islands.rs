@@ -1,6 +1,6 @@
 use std::collections::VecDeque;
 #[allow(dead_code)]
-pub fn BFS(matrix: &mut Vec<Vec<char>>, row: usize, col: usize, sr: usize, sc: usize) {
+pub fn bfs(matrix: &mut Vec<Vec<char>>, row: usize, col: usize, sr: usize, sc: usize) {
     let mut queue: VecDeque<(usize, usize)> = VecDeque::new();
     queue.push_back((sr, sc));
     while !queue.is_empty() {
@@ -36,7 +36,7 @@ pub fn num_islands(grid: Vec<Vec<char>>) -> i32 {
         for col_idx in 0..col_count {
             if grid[row_idx][col_idx] == '1' {
                 ans += 1;
-                BFS(&mut grid, row_count, col_count, row_idx, col_idx);
+                bfs(&mut grid, row_count, col_count, row_idx, col_idx);
             }
         }
     }
