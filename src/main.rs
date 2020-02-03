@@ -1,4 +1,5 @@
 mod _1_two_sum;
+mod _155_min_stack;
 mod _200_number_of_islands;
 mod _279_perfect_squares;
 mod _394_decode_string;

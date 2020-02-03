@@ -1,6 +1,7 @@
 |  ID  |         Title         | Difficulty | Runtime | Memory Usage |
 | :--: | :-------------------: | :--------: | :-----: | :----------: |
 | 0001 |        Two Sum        |    Easy    |  0 ms   |    2.4 MB    |
+| 0155 |       Min Stack       |    Easy    |  8 ms   |    5.5 MB    |
 | 0200 |   Number of Islands   |   Medium   |  4 ms   |    5.5 MB    |
 | 0279 |    Perfect Squares    |   Medium   |  24 ms  |    2.2 MB    |
 | 0394 |     Decode String     |   Medium   |  0 ms   |    1.9 MB    |
