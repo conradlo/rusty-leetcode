@@ -76,41 +76,38 @@ pub fn flood_fill(image: Vec<Vec<i32>>, sr: i32, sc: i32, new_color: i32) -> Vec
     // if we modify the `image: Vec<Vec<i32>>` directly, we do not need to create another 2D array
     // hence we need to create a mutable reference
     // without it the rust compiler won't let us modify the input image: `Vec<Vec<i32>>`
-    let mut new_image = image;
+    let mut image = image;
 
     // DFS
 
     let mut stack = vec![(start_r, start_c)];
 
     while stack.len() > 0 {
-        let &(r, c) = stack.last().unwrap();
-        // by checking the pixel's color we avoid DFS on
-        // 1. visited pixels (but visited pixels could be pushed onto the stack more than 1 time)
-        // 2. pixels that are not the same color as the starting pixel
-        if new_image[r][c] == start_color {
-            new_image[r][c] = new_color;
-            if r > 0 {
+        if let Some(&(r, c)) = stack.last() {
+            // by checking the pixel's color we avoid DFS on
+            // 1. visited pixels
+            // 2. pixels that are not the same color as the starting pixel
+            image[r][c] = new_color;
+            if r > 0 && image[r - 1][c] == start_color {
                 // up
                 stack.push((r - 1, c));
-            }
-            if r < row_count - 1 {
+            } else if r + 1 < row_count && image[r + 1][c] == start_color {
                 // down
                 stack.push((r + 1, c));
-            }
-            if c > 0 {
+            } else if c > 0 && image[r][c - 1] == start_color {
                 // left
                 stack.push((r, c - 1));
-            }
-            if c < col_count - 1 {
+            } else if c < col_count - 1 && image[r][c + 1] == start_color {
                 // right
                 stack.push((r, c + 1));
+            } else {
+                // no where to go, pop this pixel
+                stack.pop();
             }
-        } else {
-            stack.pop();
         }
     }
 
-    new_image
+    image
 }
 // cargo watch -x "test _733_flood_fill -- --nocapture"
 #[cfg(test)]
