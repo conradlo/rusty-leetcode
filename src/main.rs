@@ -1,11 +1,11 @@
-mod _1_two_sum;
-mod _155_min_stack;
-mod _200_number_of_islands;
-mod _279_perfect_squares;
-mod _394_decode_string;
-mod _622_design_circular_queue;
-mod _733_flood_fill;
-mod _752_open_the_lock;
+mod _0001_two_sum;
+mod _0155_min_stack;
+mod _0200_number_of_islands;
+mod _0279_perfect_squares;
+mod _0394_decode_string;
+mod _0622_design_circular_queue;
+mod _0733_flood_fill;
+mod _0752_open_the_lock;
 
 fn main() {
     println!("Hello leetcode!");
