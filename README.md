@@ -8,6 +8,7 @@
 | 0394 |     Decode String     |   Medium   |  0 ms   |    1.9 MB    |
 | 0622 | Design Circular Queue |   Medium   |  4 ms   |    2.2 MB    |
 | 0733 |      Flood Fill       |    Easy    |  0 ms   |    1.9 MB    |
+| 0739 |  Daily Temperatures   |   Medium   |  20 ms  |    2.8 MB    |
 | 0752 |     Open the Lock     |   Medium   | 108 ms  |    3.5 MB    |
 
 ---
