@@ -1,15 +1,16 @@
-|  ID  |         Title         | Difficulty | Runtime | Memory Usage |
-| :--: | :-------------------: | :--------: | :-----: | :----------: |
-| 0001 |        Two Sum        |    Easy    |  0 ms   |    2.4 MB    |
-| 0020 |   Valid Parentheses   |    Easy    |  0 ms   |    2.1 MB    |
-| 0155 |       Min Stack       |    Easy    |  8 ms   |    5.5 MB    |
-| 0200 |   Number of Islands   |   Medium   |  4 ms   |    5.5 MB    |
-| 0279 |    Perfect Squares    |   Medium   |  24 ms  |    2.2 MB    |
-| 0394 |     Decode String     |   Medium   |  0 ms   |    1.9 MB    |
-| 0622 | Design Circular Queue |   Medium   |  4 ms   |    2.2 MB    |
-| 0733 |      Flood Fill       |    Easy    |  0 ms   |    1.9 MB    |
-| 0739 |  Daily Temperatures   |   Medium   |  20 ms  |    2.8 MB    |
-| 0752 |     Open the Lock     |   Medium   | 108 ms  |    3.5 MB    |
+|  ID  |              Title               | Difficulty | Runtime | Memory Usage |
+| :--: | :------------------------------: | :--------: | :-----: | :----------: |
+| 0001 |             Two Sum              |    Easy    |  0 ms   |    2.4 MB    |
+| 0020 |        Valid Parentheses         |    Easy    |  0 ms   |    2.1 MB    |
+| 0150 | Evaluate Reverse Polish Notation |   Medium   |  0 ms   |    2.6 MB    |
+| 0155 |            Min Stack             |    Easy    |  8 ms   |    5.5 MB    |
+| 0200 |        Number of Islands         |   Medium   |  4 ms   |    5.5 MB    |
+| 0279 |         Perfect Squares          |   Medium   |  24 ms  |    2.2 MB    |
+| 0394 |          Decode String           |   Medium   |  0 ms   |    1.9 MB    |
+| 0622 |      Design Circular Queue       |   Medium   |  4 ms   |    2.2 MB    |
+| 0733 |            Flood Fill            |    Easy    |  0 ms   |    1.9 MB    |
+| 0739 |        Daily Temperatures        |   Medium   |  20 ms  |    2.8 MB    |
+| 0752 |          Open the Lock           |   Medium   | 108 ms  |    3.5 MB    |
 
 ---
 

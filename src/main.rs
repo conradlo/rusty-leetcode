@@ -1,5 +1,6 @@
 mod _0001_two_sum;
 mod _0020_valid_parentheses;
+mod _0150_evaluate_reverse_polish_notation;
 mod _0155_min_stack;
 mod _0200_number_of_islands;
 mod _0279_perfect_squares;
