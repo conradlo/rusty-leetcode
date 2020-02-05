@@ -53,7 +53,7 @@ pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
     }
     return vec![0, 1];
 }
-// cargo watch -x "test _1_two_sum -- --nocapture"
+// cargo watch -x "test _0001_ -- --nocapture"
 #[cfg(test)]
 mod tests {
     use super::*;

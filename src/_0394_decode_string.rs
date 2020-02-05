@@ -23,7 +23,7 @@ pub fn decode_string(s: String) -> String {
     return reader;
 }
 
-// cargo watch -x "test _394_decode_string -- --nocapture"
+// cargo watch -x "test _0394_ -- --nocapture"
 #[cfg(test)]
 mod tests {
     use super::*;

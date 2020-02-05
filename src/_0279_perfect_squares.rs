@@ -30,7 +30,7 @@ pub fn num_squares(n: i32) -> i32 {
     return ans_list[n - 1] as i32;
 }
 
-// cargo watch -x "test _279_perfect_squares -- --nocapture"
+// cargo watch -x "test _0279_ -- --nocapture"
 #[cfg(test)]
 mod test {
     use super::*;

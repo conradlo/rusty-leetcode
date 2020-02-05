@@ -91,7 +91,7 @@ impl MyCircularQueue {
  let ret_5: bool = obj.is_empty();
  let ret_6: bool = obj.is_full();
 */
-// cargo watch -x "test _622_design_circular_queue -- --nocapture"
+// cargo watch -x "test _0622_ -- --nocapture"
 #[cfg(test)]
 mod tests {
     use super::*;

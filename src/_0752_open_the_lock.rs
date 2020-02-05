@@ -67,7 +67,7 @@ pub fn open_lock(deadends: Vec<String>, target: String) -> i32 {
     -1
 }
 
-// cargo watch -x "test _752_open_the_lock -- --nocapture"
+// cargo watch -x "test _0752_ -- --nocapture"
 #[cfg(test)]
 mod test {
     use super::*;

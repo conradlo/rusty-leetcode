@@ -33,7 +33,7 @@ pub fn is_valid(s: String) -> bool {
     return stack.len() == 0;
 }
 
-// cargo watch -x "test _0020_valid_parentheses -- --nocapture"
+// cargo watch -x "test _0020_ -- --nocapture"
 #[cfg(test)]
 mod tests {
     use super::*;

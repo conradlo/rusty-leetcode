@@ -46,7 +46,7 @@ impl MinStack {
  let ret_3: i32 = obj.top();
  let ret_4: i32 = obj.get_min();
 */
-// cargo watch -x "test _155_min_stack -- --nocapture"
+// cargo watch -x "test _0155_ -- --nocapture"
 #[cfg(test)]
 mod tests {
     use super::*;

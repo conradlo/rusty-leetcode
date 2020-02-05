@@ -42,7 +42,7 @@ pub fn num_islands(grid: Vec<Vec<char>>) -> i32 {
     }
     ans
 }
-// cargo watch -x "test _200_number_of_islands -- --nocapture"
+// cargo watch -x "test _0200_ -- --nocapture"
 #[cfg(test)]
 mod tests {
     use super::*;
