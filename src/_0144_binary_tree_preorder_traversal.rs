@@ -31,18 +31,18 @@ use std::rc::Rc;
 #[allow(dead_code)]
 impl Solution {
     pub fn preorder_traversal_recursive(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+        let mut traverse = vec![];
         if let Some(node) = root {
             let ref node = node.borrow();
-            let mut traverse = vec![node.val];
+            traverse.push(node.val);
             traverse.append(&mut Solution::preorder_traversal_recursive(
                 node.left.clone(),
             ));
             traverse.append(&mut Solution::preorder_traversal_recursive(
                 node.right.clone(),
             ));
-            return traverse;
         }
-        return vec![];
+        traverse
     }
 
     pub fn preorder_traversal_iterative(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {

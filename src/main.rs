@@ -1,7 +1,9 @@
+// import code in main.rs such that `cargo test` will run all tests inside these modules
 mod _0001_two_sum;
 mod _0020_valid_parentheses;
 mod _0094_binary_tree_inorder_traversal;
 mod _0144_binary_tree_preorder_traversal;
+mod _0145_binary_tree_postorder_traversal;
 mod _0150_evaluate_reverse_polish_notation;
 mod _0155_min_stack;
 mod _0200_number_of_islands;

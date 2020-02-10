@@ -1,9 +1,12 @@
+> note: runtime are weird and just for reference
+
 |  ID  |              Title               | Difficulty | Runtime | Memory Usage |
 | :--: | :------------------------------: | :--------: | :-----: | :----------: |
 | 0001 |             Two Sum              |    Easy    |  0 ms   |    2.4 MB    |
 | 0020 |        Valid Parentheses         |    Easy    |  0 ms   |    2.1 MB    |
 | 0094 |  Binary Tree Inorder Traversal   |   Medium   |  0 ms   |    2.0 MB    |
 | 0144 |  Binary Tree Preorder Traversal  |   Medium   |  0 ms   |    2.1 MB    |
+| 0145 | Binary Tree Postorder Traversal  |    Hard    |  0 ms   |    2.1 MB    |
 | 0150 | Evaluate Reverse Polish Notation |   Medium   |  0 ms   |    2.6 MB    |
 | 0155 |            Min Stack             |    Easy    |  8 ms   |    5.5 MB    |
 | 0200 |        Number of Islands         |   Medium   |  4 ms   |    5.5 MB    |

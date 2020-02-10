@@ -31,8 +31,8 @@ use std::rc::Rc;
 #[allow(dead_code)]
 impl Solution {
     pub fn inorder_traversal_recursive(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+        let mut traverse = vec![];
         if let Some(node) = root {
-            let mut traverse = vec![];
             let tree_node = node.borrow();
             traverse.append(&mut Solution::inorder_traversal_recursive(
                 tree_node.left.clone(),
@@ -41,13 +41,30 @@ impl Solution {
             traverse.append(&mut Solution::inorder_traversal_recursive(
                 tree_node.right.clone(),
             ));
-            return traverse;
         }
-        return vec![];
+        traverse
     }
 
     // TODO: revisit
     pub fn inorder_traversal_iterative(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+        let mut ans: Vec<i32> = vec![];
+        let mut stack: Vec<Rc<RefCell<TreeNode>>> = vec![];
+        let mut current = root;
+        while current.is_some() || stack.len() > 0 {
+            if let Some(node) = current {
+                // push until no more left child
+                stack.push(Rc::clone(&node));
+                current = node.borrow().left.clone();
+            } else if let Some(top_node) = stack.pop() {
+                // pop top_node and never come back
+                ans.push(top_node.borrow().val);
+                current = top_node.borrow().right.clone();
+            }
+        }
+        ans
+    }
+
+    pub fn inorder_traversal_iterative_1(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
         let mut ans: Vec<i32> = vec![];
         // let mut stack: Vec<Rc<RefCell<TreeNode>>> = vec![];
         let mut stack: Vec<Option<Rc<RefCell<TreeNode>>>> = vec![];
@@ -105,6 +122,7 @@ mod tests {
         }
         nodes[0].clone()
     }
+
     fn build_tree_prev(list: &Vec<Option<i32>>) -> Option<Rc<RefCell<TreeNode>>> {
         // copy from _0144_
         let l = list.len();
