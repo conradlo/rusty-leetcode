@@ -28,7 +28,7 @@ pub fn dfs(matrix: Vec<Vec<i32>>, sr: i32, sc: i32) {
     println!("------");
 }
 
-// cargo watch -x "test _DFS -- --nocapture"
+// cargo watch -x "test matrix_traverse_dfs -- --nocapture"
 #[cfg(test)]
 mod tests {
     use super::*;

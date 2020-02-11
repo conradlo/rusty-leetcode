@@ -16,6 +16,7 @@ mod _0622_design_circular_queue;
 mod _0733_flood_fill;
 mod _0739_daily_temperatures;
 mod _0752_open_the_lock;
+mod other;
 
 fn main() {
     println!("Hello leetcode!");
