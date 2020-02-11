@@ -160,6 +160,23 @@ mod tests {
                 ],
                 vec![5, 4, 3, -1, 7, 2, 9],
             ),
+            (
+                vec![
+                    Some(6),
+                    Some(2),
+                    Some(7),
+                    Some(1),
+                    Some(4),
+                    None,
+                    Some(9),
+                    None,
+                    None,
+                    Some(3),
+                    Some(5),
+                    Some(8),
+                ],
+                vec![6, 2, 1, 4, 3, 5, 7, 9, 8],
+            ),
         ];
     }
 

@@ -1,2 +1,6 @@
 /target
 **/*.rs.bk
+
+# ignore top level .rs file
+# e.g. files that fetch from leetcode.com via leetcode-cli
+/*.rs
