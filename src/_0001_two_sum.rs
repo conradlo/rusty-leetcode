@@ -1,4 +1,3 @@
-#[allow(dead_code)]
 pub fn two_sum_1(nums: Vec<i32>, target: i32) -> Vec<i32> {
     for i in 0..nums.len() {
         for j in i + 1..nums.len() {
@@ -14,7 +13,6 @@ pub fn two_sum_1(nums: Vec<i32>, target: i32) -> Vec<i32> {
 
 use std::collections::HashMap;
 
-#[allow(dead_code)]
 pub fn two_sum_2(nums: Vec<i32>, target: i32) -> Vec<i32> {
     let mut rmb = HashMap::<i32, i32>::new(); // val, idx
     let mut complements = Vec::<i32>::new();
@@ -34,7 +32,6 @@ pub fn two_sum_2(nums: Vec<i32>, target: i32) -> Vec<i32> {
 }
 
 // best ans [0ms, 2.4md]
-#[allow(dead_code)]
 pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
     if nums.len() > 2 {
         let mut dict = HashMap::<i32, i32>::new();

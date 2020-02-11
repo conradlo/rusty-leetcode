@@ -1,4 +1,3 @@
-#[allow(dead_code)]
 pub fn flood_fill_1(image: Vec<Vec<i32>>, sr: i32, sc: i32, new_color: i32) -> Vec<Vec<i32>> {
     // image[row_idx][col_idx]
     let row_count = image.len();
@@ -55,7 +54,6 @@ pub fn flood_fill_1(image: Vec<Vec<i32>>, sr: i32, sc: i32, new_color: i32) -> V
     new_image
 }
 
-#[allow(dead_code)]
 pub fn flood_fill(image: Vec<Vec<i32>>, sr: i32, sc: i32, new_color: i32) -> Vec<Vec<i32>> {
     // for bounds checking
     let row_count = image.len();

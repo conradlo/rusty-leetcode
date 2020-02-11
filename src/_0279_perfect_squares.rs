@@ -1,5 +1,4 @@
 // bottom up DP
-#[allow(dead_code)]
 pub fn num_squares(n: i32) -> i32 {
     if n == 0 {
         return 0;

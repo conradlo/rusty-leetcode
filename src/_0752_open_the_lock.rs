@@ -1,5 +1,4 @@
 use std::collections::{HashMap, HashSet, VecDeque};
-#[allow(dead_code)]
 pub fn open_lock(deadends: Vec<String>, target: String) -> i32 {
     let mut visited: HashSet<String> = HashSet::new();
     // treat all deadends as visited nodes

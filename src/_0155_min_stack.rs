@@ -1,4 +1,3 @@
-#[allow(dead_code)]
 struct MinStack {
     stack: Vec<(i32, i32)>,
 }
@@ -6,7 +5,6 @@ struct MinStack {
  * `&self` means the method takes an immutable reference.
  * If you need a mutable reference, change it to `&mut self` instead.
  */
-#[allow(dead_code)]
 impl MinStack {
     /** initialize your data structure here. */
     fn new() -> Self {

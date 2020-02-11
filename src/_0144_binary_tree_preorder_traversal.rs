@@ -4,7 +4,6 @@
  * [144] Binary Tree Preorder Traversal
  */
 
-#[allow(dead_code)]
 struct Solution;
 // Definition for a binary tree node.
 #[derive(Debug, PartialEq, Eq)]
@@ -14,7 +13,6 @@ pub struct TreeNode {
     pub right: Option<Rc<RefCell<TreeNode>>>,
 }
 //
-#[allow(dead_code)]
 impl TreeNode {
     #[inline]
     pub fn new(val: i32) -> Self {
@@ -28,7 +26,6 @@ impl TreeNode {
 // @lc code=start
 use std::cell::RefCell;
 use std::rc::Rc;
-#[allow(dead_code)]
 impl Solution {
     pub fn preorder_traversal_recursive(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
         let mut traverse = vec![];

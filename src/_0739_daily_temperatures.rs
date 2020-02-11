@@ -1,4 +1,3 @@
-#[allow(dead_code)]
 pub fn daily_temperatures(t: Vec<i32>) -> Vec<i32> {
     let l = t.len();
     let mut ans = vec![0; l];

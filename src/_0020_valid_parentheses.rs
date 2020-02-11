@@ -1,4 +1,3 @@
-#[allow(dead_code)]
 pub fn is_valid(s: String) -> bool {
     // println!("{}", s);
     let char_count = s.chars().count();

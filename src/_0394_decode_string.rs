@@ -1,4 +1,3 @@
-#[allow(dead_code)]
 pub fn decode_string(s: String) -> String {
     let mut stack = Vec::<(String, usize)>::new();
     let mut mul = 0;

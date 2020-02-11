@@ -5,7 +5,6 @@
  */
 
 // Definition for a binary tree node.
-#[allow(dead_code)]
 #[derive(Debug, PartialEq, Eq)]
 pub struct TreeNode {
     pub val: i32,
@@ -13,7 +12,6 @@ pub struct TreeNode {
     pub right: Option<Rc<RefCell<TreeNode>>>,
 }
 
-#[allow(dead_code)]
 impl TreeNode {
     #[inline]
     pub fn new(val: i32) -> Self {
@@ -28,7 +26,6 @@ struct Solution;
 // @lc code=start
 use std::cell::RefCell;
 use std::rc::Rc;
-#[allow(dead_code)]
 impl Solution {
     pub fn inorder_traversal_recursive(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
         let mut traverse = vec![];

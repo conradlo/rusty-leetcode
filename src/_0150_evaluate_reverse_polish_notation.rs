@@ -1,4 +1,3 @@
-#[allow(dead_code)]
 pub fn eval_rpn(tokens: Vec<String>) -> i32 {
     let mut stack: Vec<i32> = vec![];
     for token in tokens {

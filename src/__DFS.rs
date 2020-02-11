@@ -1,5 +1,4 @@
 // use std::collections::HashMap;
-#[allow(dead_code)]
 pub fn dfs(matrix: Vec<Vec<i32>>, sr: i32, sc: i32) {
     let row_count = matrix.len();
     let col_count = if row_count > 0 { matrix[0].len() } else { 0 };
