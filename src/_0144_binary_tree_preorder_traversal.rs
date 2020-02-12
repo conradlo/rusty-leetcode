@@ -43,19 +43,33 @@ impl Solution {
     }
 
     pub fn preorder_traversal_iterative(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+        // https://en.wikipedia.org/wiki/Tree_traversal#Pre-order
         /*
            1. Do not re-visit node
            2. only process node's data once
+
+           Binary Tree can be viewed as a kind of directed acyclic graph (DAG)
+           usually we go from the parent node to children node
+           With a thoughtful algorithm, we may not neet a data structure to
+           rmb what node we'd visited
+           this makes tree traveral different from graph traversal
         */
         let mut ans = vec![];
-        let mut stack: Vec<Option<Rc<RefCell<TreeNode>>>> = vec![root];
-        // ! pop on read
-        while let Some(stack_node) = stack.pop() {
-            if let Some(ref rc_node) = stack_node {
-                let node = rc_node.borrow();
-                ans.push(node.val);
-                stack.push(node.right.clone()); // ! right first
-                stack.push(node.left.clone())
+        let mut stack: Vec<Rc<RefCell<TreeNode>>> = vec![];
+        if let Some(node) = root {
+            stack.push(node);
+        }
+        // every time we pop a node from the stack, we process it
+        // and never visit it again
+        while let Some(rc_node) = stack.pop() {
+            let node = rc_node.borrow();
+            ans.push(node.val);
+            // push right child first, such that left child will be process first
+            if let Some(ref right_node) = node.right {
+                stack.push(Rc::clone(&right_node));
+            }
+            if let Some(ref left_node) = node.left {
+                stack.push(Rc::clone(&left_node));
             }
         }
         return ans;

@@ -44,18 +44,22 @@ impl Solution {
 
     // TODO: revisit
     pub fn inorder_traversal_iterative(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+        // how to make sure we process the tree in Left -> Node -> Right order?
+        // https://en.wikipedia.org/wiki/Tree_traversal#In-order
+        // I call this "finger-pointing" method
         let mut ans: Vec<i32> = vec![];
         let mut stack: Vec<Rc<RefCell<TreeNode>>> = vec![];
-        let mut current = root;
+        let mut current = root; // finger points at root
         while current.is_some() || stack.len() > 0 {
             if let Some(node) = current {
                 // push until no more left child
                 stack.push(Rc::clone(&node));
-                current = node.borrow().left.clone();
+                current = node.borrow().left.clone(); // finger points at left child
             } else if let Some(top_node) = stack.pop() {
+                // finger points at nothing, can process node on stack
                 // pop top_node and never come back
                 ans.push(top_node.borrow().val);
-                current = top_node.borrow().right.clone();
+                current = top_node.borrow().right.clone(); // finger points at right child
             }
         }
         ans

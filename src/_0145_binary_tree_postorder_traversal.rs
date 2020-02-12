@@ -63,10 +63,12 @@ impl Solution {
                 // then [2] push right child (if any), then [3] push left child (if any)
                 // such that the stack will become:
                 /*
+                                 (top of stack)
                    |left child | [3] (if any, process before right child)
                    |right child| [2] (if any, process before top_node)
                    |top_node   | [1] (now all children were detached)
                    |...        |
+                                 (bottom of stack)
                 */
                 let right = node.right.clone();
                 node.right = None; // detach
@@ -96,14 +98,16 @@ impl Solution {
         let mut ans = vec![];
         let mut stack: Vec<(bool, Rc<RefCell<TreeNode>>)> = vec![];
         if let Some(node) = root {
-            stack.push((false, node));
+            stack.push((false, node)); // tag each node with a boolean flag
         }
         while let Some((examined, rc_node)) = stack.pop() {
-            let node = rc_node.borrow(); // `node` is a Ref
+            let node = rc_node.borrow(); // `node` is a Ref, not Rc
             if examined {
+                // "examined" means we had checked if the node had left/right child
+                // and pushed them onto the stack (if any)
                 ans.push(node.val);
             } else {
-                stack.push((true, Rc::clone(&rc_node)));
+                stack.push((true, Rc::clone(&rc_node))); // clone the Rc (rc_node), not Ref (node)
                 if let Some(ref right_node) = node.right {
                     stack.push((false, Rc::clone(&right_node)));
                 }

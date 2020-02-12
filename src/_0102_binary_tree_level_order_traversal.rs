@@ -32,20 +32,24 @@ impl Solution {
         let mut ans: Vec<Vec<i32>> = vec![];
         let mut q = VecDeque::new();
         if let Some(node) = root {
-            q.push_back((0, node));
+            q.push_back((0, node)); // tag each node we visit with a "depth" number
         }
-        while let Some((l, rc_node)) = q.pop_front() {
+        while let Some((level, rc_node)) = q.pop_front() {
             let node = rc_node.borrow();
-            if let Some(v) = ans.get_mut(l) {
+            // ans[0] = vector of node values at level 0 (i.e. root)
+            // ans[1] = vector of node values at level 1 etc...
+            // append node's value to corresponding vector
+            // create new vector at ans[level] if it does not exist
+            if let Some(v) = ans.get_mut(level) {
                 v.push(node.val)
             } else {
                 ans.push(vec![node.val]);
             };
             if let Some(ref rc_left) = node.left {
-                q.push_back((l + 1, Rc::clone(rc_left)));
+                q.push_back((level + 1, Rc::clone(&rc_left)));
             }
             if let Some(ref rc_right) = node.right {
-                q.push_back((l + 1, Rc::clone(rc_right)));
+                q.push_back((level + 1, Rc::clone(&rc_right)));
             }
         }
         ans
