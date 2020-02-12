@@ -65,19 +65,39 @@ impl Solution {
         ans
     }
 
-    pub fn inorder_traversal_iterative_1(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+    pub fn inorder_traversal_iterative_v2(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+        // this is the same algo as above, but with my own words
         let mut ans: Vec<i32> = vec![];
-        // let mut stack: Vec<Rc<RefCell<TreeNode>>> = vec![];
-        let mut stack: Vec<Option<Rc<RefCell<TreeNode>>>> = vec![];
-        let mut current: Option<Rc<RefCell<TreeNode>>> = root;
-        while current.is_some() || stack.len() > 0 {
-            while let Some(ref node) = current.clone() {
-                stack.push(current.clone());
-                current = node.borrow().left.clone();
-            }
-            if let Some(Some(top)) = stack.pop() {
-                ans.push(top.borrow().val);
-                current = top.borrow().right.clone();
+        // for every node on the stack
+        // we do not need to check for its left child
+        // because we had done it before
+        let mut stack: Vec<Rc<RefCell<TreeNode>>> = vec![];
+        // left_finger always points at node's left_child
+        let mut left_finger: Option<Rc<RefCell<TreeNode>>> = None;
+        if let Some(ref rc_node) = root {
+            let node = rc_node.borrow();
+            stack.push(Rc::clone(&rc_node));
+            left_finger = node.left.clone();
+        }
+        while left_finger.is_some() || stack.len() > 0 {
+            if let Some(rc_node) = left_finger {
+                let node = rc_node.borrow();
+                stack.push(Rc::clone(&rc_node));
+                left_finger = node.left.clone();
+            } else if let Some(rc_node) = stack.pop() {
+                // we only pop node from the stack
+                // whenever left_finger points at nothing
+                // meaning all left_child of some node has been pushed (and visited)
+                // so we do not need to check for left child
+                let node = rc_node.borrow();
+                ans.push(node.val); // process the node
+                if let Some(ref right_node) = node.right {
+                    // this node has right_child
+                    // push it (right_child) and points left_finger
+                    // at its left_child (right_child's left_child)
+                    stack.push(Rc::clone(&right_node));
+                    left_finger = right_node.borrow().left.clone();
+                }
             }
         }
         ans
@@ -265,6 +285,15 @@ mod tests {
         for (tree_nodes, expect) in testcases {
             let tree = build_tree(&tree_nodes);
             let result = Solution::inorder_traversal_iterative(tree);
+            assert_eq!(result, expect);
+        }
+    }
+    #[test]
+    fn run_test_cases_3() {
+        let testcases = get_test_cases();
+        for (tree_nodes, expect) in testcases {
+            let tree = build_tree(&tree_nodes);
+            let result = Solution::inorder_traversal_iterative_v2(tree);
             assert_eq!(result, expect);
         }
     }
