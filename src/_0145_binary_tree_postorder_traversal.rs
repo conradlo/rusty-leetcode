@@ -118,6 +118,12 @@ impl Solution {
         }
         ans
     }
+
+    pub fn postorder_traversal_iterative_ver3(_root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+        // https://en.wikipedia.org/wiki/Tree_traversal#Post-order
+        // TODO: implement the wiki's method
+        return vec![];
+    }
 }
 // @lc code=end
 
@@ -232,6 +238,18 @@ mod tests {
             let tree = build_tree(&tree_nodes);
             let ans_recur = Solution::postorder_traversal_recursive(tree.clone());
             let ans_iter = Solution::postorder_traversal_iterative_ver2(tree.clone());
+            assert_eq!(ans_recur, ans_iter);
+        }
+    }
+
+    #[test]
+    #[ignore]
+    fn run_test_cases_4() {
+        let testcases = get_test_cases();
+        for (tree_nodes, _) in testcases {
+            let tree = build_tree(&tree_nodes);
+            let ans_recur = Solution::postorder_traversal_recursive(tree.clone());
+            let ans_iter = Solution::postorder_traversal_iterative_ver3(tree.clone());
             assert_eq!(ans_recur, ans_iter);
         }
     }

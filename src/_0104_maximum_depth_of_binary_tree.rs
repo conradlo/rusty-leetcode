@@ -64,7 +64,7 @@ impl Solution {
         };
     }
     pub fn max_depth_recursive_v2(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
-        // this a improved version of recursive v1
+        // this is an improved(?) version of recursive v1
         if let Some(rc_node) = root {
             return Solution::max_depth_recursive_v2_helper(rc_node);
         }
