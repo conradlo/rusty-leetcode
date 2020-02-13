@@ -8,6 +8,7 @@
 | 0101 |          Symmetric Tree           |    Easy    |  0 ms   |    2.2 MB    |   ⭐    |             |
 | 0102 | Binary Tree Level Order Traversal |   Medium   |  0 ms   |    2.2 MB    |         |             |
 | 0104 |   Maximum Depth of Binary Tree    |    Easy    |  0 ms   |    2.8 MB    |         |             |
+| 0112 |             Path Sum              |    Easy    |  0 ms   |    2.5 MB    |         |             |
 | 0144 |  Binary Tree Preorder Traversal   |   Medium   |  0 ms   |    2.1 MB    |         |             |
 | 0145 |  Binary Tree Postorder Traversal  |    Hard    |  0 ms   |    2.1 MB    |         |             |
 | 0150 | Evaluate Reverse Polish Notation  |   Medium   |  0 ms   |    2.6 MB    |         |             |
