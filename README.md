@@ -16,6 +16,7 @@
 | 0155 |                         Min Stack                          |    Easy    |  8 ms   |    5.5 MB    |         |             |
 | 0200 |                     Number of Islands                      |   Medium   |  4 ms   |    5.5 MB    |         |             |
 | 0279 |                      Perfect Squares                       |   Medium   |  24 ms  |    2.2 MB    |   🔥    |             |
+| 0344 |                       Reverse String                       |    Easy    |  16 ms  |    5.3 MB    |         |             |
 | 0394 |                       Decode String                        |   Medium   |  0 ms   |    1.9 MB    |   ⭐    |             |  |
 | 0494 |                         Target Sum                         |   Medium   | 1156 ms |    2.1 MB    |  ⭐🔥⏲  |             |
 | 0622 |                   Design Circular Queue                    |   Medium   |  4 ms   |    2.2 MB    |         |             |

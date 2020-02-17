@@ -16,6 +16,7 @@ mod _0150_evaluate_reverse_polish_notation;
 mod _0155_min_stack;
 mod _0200_number_of_islands;
 mod _0279_perfect_squares;
+mod _0344_reverse_string;
 mod _0394_decode_string;
 mod _0494_target_sum;
 mod _0622_design_circular_queue;
