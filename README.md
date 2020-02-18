@@ -16,6 +16,7 @@
 | 0150 |              Evaluate Reverse Polish Notation              |   Medium   |  0 ms   |    2.6 MB    |         |             |
 | 0155 |                         Min Stack                          |    Easy    |  8 ms   |    5.5 MB    |         |             |
 | 0200 |                     Number of Islands                      |   Medium   |  4 ms   |    5.5 MB    |         |             |
+| 0206 |                    Reverse Linked List                     |    Easy    |  0 ms   |    2.3 MB    |         |             |
 | 0279 |                      Perfect Squares                       |   Medium   |  24 ms  |    2.2 MB    |   🔥    |             |
 | 0344 |                       Reverse String                       |    Easy    |  16 ms  |    5.3 MB    |         |             |
 | 0394 |                       Decode String                        |   Medium   |  0 ms   |    1.9 MB    |   ⭐    |             |
