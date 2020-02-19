@@ -105,6 +105,51 @@ impl Solution {
         count
     }
     // end of v2
+
+    // v3
+
+    // O(2^n) (520ms) ~30%
+    pub fn v3_helper(i: usize, nums: &Vec<i32>, target: i32, acc_sum: i32) -> i32 {
+        if i < nums.len() {
+            let left = Solution::v3_helper(i + 1, nums, target, acc_sum + nums[i]);
+            let right = Solution::v3_helper(i + 1, nums, target, acc_sum - nums[i]);
+            return left + right; // post order
+        }
+        return if target == acc_sum { 1 } else { 0 };
+    }
+    pub fn find_target_sum_ways_v3(nums: Vec<i32>, s: i32) -> i32 {
+        // recursive implementation of v2
+        return Solution::v3_helper(0, &nums, s, 0);
+    }
+
+    // v4 (8ms/ 75%)
+    pub fn v4_helper(
+        i: usize,
+        nums: &Vec<i32>,
+        target: i32,
+        acc_sum: i32,
+        matrix: &mut Vec<Vec<i32>>,
+    ) -> i32 {
+        if i < nums.len() {
+            if matrix[i][(acc_sum + 1000) as usize] != -1 {
+                return matrix[i][(acc_sum + 1000) as usize];
+            }
+            let left = Solution::v4_helper(i + 1, nums, target, acc_sum + nums[i], matrix);
+            let right = Solution::v4_helper(i + 1, nums, target, acc_sum - nums[i], matrix);
+            let ans = left + right;
+            matrix[i][(acc_sum + 1000) as usize] = ans;
+            return ans; // post order || bottom to top
+        }
+        return if target == acc_sum { 1 } else { 0 };
+    }
+    pub fn find_target_sum_ways_v4(nums: Vec<i32>, s: i32) -> i32 {
+        // v3 with memoization
+        let i = nums.len();
+        let j = 2 * 1000 + 1; // -1000 ... 0 ... 1000
+        let mut matrix = vec![vec![-1; j]; i];
+        // println!("{:?}", matrix);
+        return Solution::v4_helper(0, &nums, s, 0, &mut matrix);
+    }
 }
 // @lc code=end
 
@@ -249,6 +294,96 @@ mod tests {
         }
         b.iter(|| {
             Solution::find_target_sum_ways_v2(rand_arr.clone(), 0);
+        });
+    }
+    #[test]
+    fn run_test_cases_v3() {
+        // (nums, target, expect)
+        let testcases: Vec<(Vec<i32>, i32, i32)> = vec![
+            (vec![], 1, 0),
+            (vec![1, 0], 1, 2),
+            (vec![0, 0, 0, 0, 0], 0, 32),
+            (vec![1, 1, 1], 3, 1),
+            (vec![1, 2, 3], 10, 0),
+            (vec![1, 1, 1, 1, 1], 3, 5),
+            (vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 55, 1),
+            (
+                vec![
+                    34, 16, 5, 38, 20, 20, 8, 43, 3, 46, 24, 12, 28, 19, 22, 28, 9, 46, 25, 36,
+                ],
+                0,
+                6638,
+            ),
+        ];
+        for (nums, s, expect) in testcases {
+            let result = Solution::find_target_sum_ways_v3(nums, s);
+            assert_eq!(result, expect);
+        }
+    }
+    #[bench]
+    // faster
+    fn bench_find_target_sum_ways_v3(b: &mut Bencher) {
+        let mut rng = rand::thread_rng();
+        let mut rand_arr: Vec<i32> = vec![0; 20];
+        for i in 0..20 {
+            rand_arr[i] = rng.gen_range(1, 100);
+        }
+        b.iter(|| {
+            Solution::find_target_sum_ways_v3(rand_arr.clone(), 0);
+        });
+    }
+    #[test]
+    fn run_test_cases_v4() {
+        // (nums, target, expect)
+        let testcases: Vec<(Vec<i32>, i32, i32)> = vec![
+            (vec![], 1, 0),
+            (vec![1, 0], 1, 2),
+            (vec![0, 0, 0, 0, 0], 0, 32),
+            (vec![1, 1, 1], 3, 1),
+            (vec![1, 2, 3], 10, 0),
+            (vec![1, 1, 1, 1, 1], 3, 5),
+            (vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 55, 1),
+            (
+                vec![
+                    34, 16, 5, 38, 20, 20, 8, 43, 3, 46, 24, 12, 28, 19, 22, 28, 9, 46, 25, 36,
+                ],
+                0,
+                6638,
+            ),
+        ];
+        for (nums, s, expect) in testcases {
+            let result = Solution::find_target_sum_ways_v4(nums, s);
+            assert_eq!(result, expect);
+        }
+    }
+    #[test]
+    fn run_test_cases_v4_random() {
+        for _ in 0..50 {
+            let mut rng = rand::thread_rng();
+            let k: i32 = rng.gen_range(-1000, 1000);
+            let n: usize = rng.gen_range(0, 15);
+            // println!("{}", n);
+            let mut rand_arr: Vec<i32> = vec![0; n];
+            for i in 0..n {
+                rand_arr[i] = rng.gen_range(0, 50);
+            }
+            let ans_1 = Solution::find_target_sum_ways_v3(rand_arr.clone(), k);
+            let ans_2 = Solution::find_target_sum_ways_v3(rand_arr.clone(), k);
+            // println!("{} {}", ans_1, ans_2);
+            assert_eq!(ans_1, ans_2);
+        }
+    }
+
+    #[bench]
+    // faster
+    fn bench_find_target_sum_ways_v4(b: &mut Bencher) {
+        let mut rng = rand::thread_rng();
+        let mut rand_arr: Vec<i32> = vec![0; 20];
+        for i in 0..20 {
+            rand_arr[i] = rng.gen_range(0, 50);
+        }
+        b.iter(|| {
+            Solution::find_target_sum_ways_v4(rand_arr.clone(), 0);
         });
     }
 }
