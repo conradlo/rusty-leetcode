@@ -20,7 +20,7 @@
 | 0279 |                      Perfect Squares                       |   Medium   |  24 ms  |    2.2 MB    |   🔥    |             |
 | 0344 |                       Reverse String                       |    Easy    |  16 ms  |    5.3 MB    |         |             |
 | 0394 |                       Decode String                        |   Medium   |  0 ms   |    1.9 MB    |   ⭐    |             |
-| 0494 |                         Target Sum                         |   Medium   | 1156 ms |    2.1 MB    |  ⭐🔥⏲  |             |
+| 0494 |                         Target Sum                         |   Medium   |  8 ms   |    2.2 MB    |  ⭐🔥⏲  | 2020/02/19  |
 | 0622 |                   Design Circular Queue                    |   Medium   |  4 ms   |    2.2 MB    |         |             |
 | 0733 |                         Flood Fill                         |    Easy    |  0 ms   |    1.9 MB    |         |             |
 | 0739 |                     Daily Temperatures                     |   Medium   |  20 ms  |    2.8 MB    |         |             |

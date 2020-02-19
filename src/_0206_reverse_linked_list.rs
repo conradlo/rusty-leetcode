@@ -25,7 +25,7 @@ impl Solution {
         let mut rev = None;
         let mut head = head;
         while let Some(mut node) = head {
-            head = node.next;
+            head = node.next; // this is a copy (I think)
             node.next = rev;
             rev = Some(node);
         }
@@ -46,6 +46,7 @@ impl Solution {
         rev
     }
 
+    // leetcode's recursive implementation is much more elegant, check it out!
     pub fn reverse_list_recursive(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         return Solution::recursive_helper(head, None);
     }
