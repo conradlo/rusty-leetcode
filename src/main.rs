@@ -22,6 +22,7 @@ mod _0279_perfect_squares;
 mod _0344_reverse_string;
 mod _0394_decode_string;
 mod _0494_target_sum;
+mod _0542_01_matrix;
 mod _0622_design_circular_queue;
 mod _0700_search_in_a_binary_search_tree;
 mod _0733_flood_fill;
