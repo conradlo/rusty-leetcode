@@ -10,6 +10,7 @@ use std::collections::VecDeque;
 impl Solution {
     pub fn can_visit_all_rooms(rooms: Vec<Vec<i32>>) -> bool {
         // traverse an adjacency list
+        // BFS
         let no_of_rooms = rooms.len();
         if no_of_rooms == 1 {
             return true;
@@ -36,7 +37,10 @@ impl Solution {
         }
         return room_count == no_of_rooms;
     }
+
+    // TODO: DFS
 }
+
 // @lc code=end
 
 // cargo watch -x "test _0841_"
