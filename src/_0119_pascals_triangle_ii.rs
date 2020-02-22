@@ -12,14 +12,17 @@ impl Solution {
     // what is the recurrence relation?
     // where is the duplicated computation? (how to avoid?)
     pub fn v1_helper(row_index: usize, item_index: usize, matrix: &mut Vec<Vec<i32>>) -> i32 {
+        // base case
         if item_index == 0 || item_index == row_index {
             return 1;
         }
 
+        // memoization
         let cache_ans = matrix[row_index][item_index];
         if cache_ans != 0 {
             return cache_ans;
         } else {
+            // recurrence relation
             let ans = Solution::v1_helper(row_index - 1, item_index - 1, matrix)
                 + Solution::v1_helper(row_index - 1, item_index, matrix);
 
@@ -71,6 +74,7 @@ mod tests {
     #[bench]
     pub fn bench_get_row(b: &mut Bencher) {
         b.iter(|| {
+            // Solution::get_row_v1(100); panic due to i32 overflow
             Solution::get_row_v1(33);
         });
     }
