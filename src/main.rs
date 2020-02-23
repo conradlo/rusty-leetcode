@@ -5,6 +5,7 @@
 mod _0001_two_sum;
 mod _0020_valid_parentheses;
 mod _0024_swap_nodes_in_pairs;
+mod _0070_climbing_stairs;
 mod _0094_binary_tree_inorder_traversal;
 mod _0101_symmetric_tree;
 mod _0102_binary_tree_level_order_traversal;

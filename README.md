@@ -5,6 +5,7 @@
 | 0001 |                          Two Sum                           |    Easy    |  0 ms   |    2.4 MB    |         |             |
 | 0020 |                     Valid Parentheses                      |    Easy    |  0 ms   |    2.1 MB    |         |             |
 | 0024 |                    Swap Nodes in Pairs                     |   Medium   |  0 ms   |    2.0 MB    |         |             |
+| 0070 |                      Climbing Stairs                       |    Easy    |  0 ms   |    2.1 MB    |         |             |
 | 0094 |               Binary Tree Inorder Traversal                |   Medium   |  0 ms   |    2.0 MB    |         |             |
 | 0101 |                       Symmetric Tree                       |    Easy    |  0 ms   |    2.2 MB    |   ⭐    |             |
 | 0102 |             Binary Tree Level Order Traversal              |   Medium   |  0 ms   |    2.2 MB    |         |             |
