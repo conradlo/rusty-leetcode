@@ -122,6 +122,9 @@ impl Solution {
         }
         fib_pair.1
     }
+
+    // Matrix Exponentiation {O(logN)} time & space
+    // Math, golden ratio, Binet's formula {O(1)}
 }
 // @lc code=end
 
