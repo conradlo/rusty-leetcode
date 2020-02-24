@@ -70,13 +70,39 @@ impl Solution {
         }
         0
     }
+
+    pub fn max_depth_iterative_v1(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
+        // DFS preorder iterative
+        let mut depth = 0;
+        let mut stack: Vec<(i32, Rc<RefCell<TreeNode>>)> = vec![];
+        if let Some(rc_node) = root {
+            stack.push((1, rc_node));
+        }
+
+        while let Some((level, rc_node)) = stack.pop() {
+            let node = rc_node.borrow();
+            if let Some(ref rc_right) = node.right {
+                stack.push((level + 1, Rc::clone(&rc_right)));
+            }
+            if let Some(ref rc_left) = node.left {
+                stack.push((level + 1, Rc::clone(&rc_left)));
+            }
+            if node.right.is_none() && node.left.is_none() && level > depth {
+                depth = level;
+            }
+        }
+
+        depth
+    }
 }
 // @lc code=end
 
 // cargo watch -x "test _0104_ -- --nocapture --test-threads=1"
+extern crate test;
 #[cfg(test)]
 mod tests {
     use super::*;
+    use test::Bencher;
 
     fn build_tree(list: &Vec<Option<i32>>) -> Option<Rc<RefCell<TreeNode>>> {
         if list.len() < 1 {
@@ -162,22 +188,39 @@ mod tests {
         ];
     }
 
-    #[test]
-    fn run_test_cases_1() {
+    #[bench]
+    fn test_and_bench_recursive_v1(b: &mut Bencher) {
         let testcases = get_test_cases();
-        for (tree_nodes, expect) in testcases {
-            let tree = build_tree(&tree_nodes);
-            let result = Solution::max_depth_recursive_v1(tree);
-            assert_eq!(result, expect);
-        }
+        b.iter(|| {
+            for (tree_nodes, expect) in testcases.clone() {
+                let tree = build_tree(&tree_nodes);
+                let result = Solution::max_depth_recursive_v1(tree);
+                assert_eq!(result, expect);
+            }
+        });
     }
-    #[test]
-    fn run_test_cases_2() {
+
+    #[bench]
+    fn test_and_bench_recursive_v2(b: &mut Bencher) {
         let testcases = get_test_cases();
-        for (tree_nodes, expect) in testcases {
-            let tree = build_tree(&tree_nodes);
-            let result = Solution::max_depth_recursive_v2(tree);
-            assert_eq!(result, expect);
-        }
+        b.iter(|| {
+            for (tree_nodes, expect) in testcases.clone() {
+                let tree = build_tree(&tree_nodes);
+                let result = Solution::max_depth_recursive_v2(tree);
+                assert_eq!(result, expect);
+            }
+        });
+    }
+
+    #[bench]
+    fn test_and_bench_iterative_v1(b: &mut Bencher) {
+        let testcases = get_test_cases();
+        b.iter(|| {
+            for (tree_nodes, expect) in testcases.clone() {
+                let tree = build_tree(&tree_nodes);
+                let result = Solution::max_depth_iterative_v1(tree);
+                assert_eq!(result, expect);
+            }
+        });
     }
 }

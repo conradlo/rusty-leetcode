@@ -9,7 +9,7 @@
 | 0094 |               Binary Tree Inorder Traversal                |   Medium   |  0 ms   |    2.0 MB    |         |             |
 | 0101 |                       Symmetric Tree                       |    Easy    |  0 ms   |    2.2 MB    |   ⭐    |             |
 | 0102 |             Binary Tree Level Order Traversal              |   Medium   |  0 ms   |    2.2 MB    |         |             |
-| 0104 |                Maximum Depth of Binary Tree                |    Easy    |  0 ms   |    2.8 MB    |         |             |
+| 0104 |                Maximum Depth of Binary Tree                |    Easy    |  0 ms   |    2.4 MB    |         | 2020/02/24  |
 | 0105 | Construct Binary Tree from Preorder and Inorder Traversal  |   Medium   |  8 ms   |   37.9 MB    |   🔥    |             |
 | 0106 | Construct Binary Tree from Inorder and Postorder Traversal |   Medium   |  4 ms   |   37.9 MB    |   🔥    |             |
 | 0112 |                          Path Sum                          |    Easy    |  0 ms   |    2.5 MB    |         |             |
