@@ -37,8 +37,8 @@ impl Solution {
 
             // split inorder at root's val
             let mut cursor = 0;
-            for i in 0..inorder.len() {
-                if inorder[i] == val {
+            for (i, &node_val) in inorder.iter().enumerate() {
+                if node_val == val {
                     cursor = i; // index of root's val in inorder
                 }
             }

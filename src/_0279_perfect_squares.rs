@@ -1,4 +1,5 @@
 // bottom up DP
+use std::cmp::Ordering;
 pub fn num_squares(n: i32) -> i32 {
     if n == 0 {
         return 0;
@@ -10,29 +11,35 @@ pub fn num_squares(n: i32) -> i32 {
         let mut min_num_square = num;
         for i in 0..squares.len() {
             let square = squares[i];
-            if square == num {
-                min_num_square = 1;
-                // need more squares
-                let l = squares.len() + 1;
-                squares.push(l * l);
-            } else if square < num {
-                let val = 1 + ans_list[num - square - 1];
-                if val < min_num_square {
-                    min_num_square = val;
+            match square.cmp(&num) {
+                Ordering::Equal => {
+                    min_num_square = 1;
+                    // need more squares
+                    let l = squares.len() + 1;
+                    squares.push(l * l);
                 }
-            } else {
-                break;
+                Ordering::Less => {
+                    let val = 1 + ans_list[num - square - 1];
+                    if val < min_num_square {
+                        min_num_square = val;
+                    }
+                }
+                Ordering::Greater => {
+                    break;
+                }
             }
         }
         ans_list[num - 1] = min_num_square;
     }
-    return ans_list[n - 1] as i32;
+    ans_list[n - 1] as i32
 }
 
 // cargo watch -x "test _0279_ -- --nocapture"
+extern crate test;
 #[cfg(test)]
-mod test {
+mod tests {
     use super::*;
+    use test::Bencher;
 
     #[test]
     fn run_test_cases() {
@@ -58,5 +65,12 @@ mod test {
             let ans = num_squares(input);
             assert_eq!(ans, expect);
         }
+    }
+
+    #[bench]
+    fn bench_v1(b: &mut Bencher) {
+        b.iter(|| {
+            num_squares(1000);
+        });
     }
 }

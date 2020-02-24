@@ -19,7 +19,7 @@ pub fn decode_string(s: String) -> String {
             reader.push(c);
         }
     }
-    return reader;
+    reader
 }
 
 // cargo watch -x "test _0394_ -- --nocapture"

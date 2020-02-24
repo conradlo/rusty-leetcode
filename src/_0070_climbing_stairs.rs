@@ -47,7 +47,7 @@ impl Solution {
         }
         // recurrence relation
         // what is the time complexity of this recursion algo?
-        return Solution::climb_stairs(n - 1) + Solution::climb_stairs(n - 2);
+        Solution::climb_stairs(n - 1) + Solution::climb_stairs(n - 2)
     }
 
     pub fn climb_stairs_v2(n: i32) -> i32 {
@@ -84,7 +84,7 @@ mod tests {
     fn bench_climb_stairs(b: &mut Bencher) {
         b.iter(|| {
             let result = Solution::climb_stairs(39);
-            assert_eq!(102334155, result);
+            assert_eq!(102_334_155, result);
         });
     }
 
@@ -101,7 +101,7 @@ mod tests {
     fn bench_climb_stairs_v2(b: &mut Bencher) {
         b.iter(|| {
             let result = Solution::climb_stairs_v2(39);
-            assert_eq!(102334155, result);
+            assert_eq!(102_334_155, result);
         });
     }
 }

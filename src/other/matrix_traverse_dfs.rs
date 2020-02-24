@@ -7,7 +7,7 @@ pub fn dfs(matrix: Vec<Vec<i32>>, sr: i32, sc: i32) {
     let mut stack = Vec::new();
 
     stack.push((sr as usize, sc as usize));
-    while stack.len() > 0 {
+    while !stack.is_empty() {
         if let Some(&top) = stack.last() {
             let (r, c) = top;
             visited[r][c] = 1;

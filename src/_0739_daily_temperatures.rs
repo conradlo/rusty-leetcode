@@ -6,7 +6,7 @@ pub fn daily_temperatures(t: Vec<i32>) -> Vec<i32> {
     }
     let mut stack: Vec<(usize, i32)> = vec![];
     for (idx, &tem) in t.iter().enumerate() {
-        while stack.len() > 0 {
+        while !stack.is_empty() {
             if let Some(&top) = stack.last() {
                 if tem > top.1 {
                     ans[top.0] = (idx - top.0) as i32;

@@ -14,14 +14,12 @@ impl Solution {
 
     pub fn helper_v1(i: usize, j: usize, s: &mut Vec<char>) {
         if i < j {
-            let tmp = s[i];
-            s[i] = s[j];
-            s[j] = tmp;
+            s.swap(i, j);
             Solution::helper_v1(i + 1, j - 1, s);
         }
     }
     pub fn reverse_string(s: &mut Vec<char>) {
-        if s.len() > 0 {
+        if !s.is_empty() {
             Solution::helper_v1(0, s.len() - 1, s);
         }
     }

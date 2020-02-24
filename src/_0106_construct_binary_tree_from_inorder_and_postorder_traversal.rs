@@ -81,7 +81,7 @@ mod tests {
         // copy from # 144
         let mut traverse = vec![];
         if let Some(node) = root {
-            let ref node = node.borrow();
+            let node = node.borrow();
             traverse.push(node.val);
             traverse.append(&mut preorder_traversal_recursive(node.left.clone()));
             traverse.append(&mut preorder_traversal_recursive(node.right.clone()));

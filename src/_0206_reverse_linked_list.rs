@@ -48,7 +48,7 @@ impl Solution {
 
     // leetcode's recursive implementation is much more elegant, check it out!
     pub fn reverse_list_recursive(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-        return Solution::recursive_helper(head, None);
+        Solution::recursive_helper(head, None)
     }
 }
 // @lc code=end
@@ -174,8 +174,8 @@ mod tests {
             let n: usize = rng.gen_range(0, 50);
             // println!("{}", n);
             let mut rand_arr: Vec<i32> = vec![0; n];
-            for i in 0..n {
-                rand_arr[i] = rng.gen_range(1, 99);
+            for rand_num in rand_arr.iter_mut() {
+                *rand_num = rng.gen_range(1, 99);
             }
             let list = build_list(rand_arr);
             let ans_1 = Solution::reverse_list_iterative(list.clone());
@@ -189,8 +189,8 @@ mod tests {
     fn bench_reverse_list_iterative(b: &mut Bencher) {
         let mut rng = rand::thread_rng();
         let mut rand_arr: Vec<i32> = vec![0; 10000];
-        for i in 0..rand_arr.len() {
-            rand_arr[i] = rng.gen_range(1, 99);
+        for rand_num in rand_arr.iter_mut() {
+            *rand_num = rng.gen_range(1, 99);
         }
         let list = build_list(rand_arr);
         b.iter(|| {
@@ -202,8 +202,8 @@ mod tests {
     fn bench_reverse_list_recursive(b: &mut Bencher) {
         let mut rng = rand::thread_rng();
         let mut rand_arr: Vec<i32> = vec![0; 10000];
-        for i in 0..rand_arr.len() {
-            rand_arr[i] = rng.gen_range(1, 99);
+        for rand_num in rand_arr.iter_mut() {
+            *rand_num = rng.gen_range(1, 99);
         }
         let list = build_list(rand_arr);
         b.iter(|| {

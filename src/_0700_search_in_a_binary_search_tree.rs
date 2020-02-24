@@ -25,6 +25,7 @@ impl TreeNode {
 }
 struct Solution;
 use std::cell::RefCell;
+use std::cmp::Ordering;
 use std::rc::Rc;
 impl Solution {
     pub fn search_bst(
@@ -33,15 +34,12 @@ impl Solution {
     ) -> Option<Rc<RefCell<TreeNode>>> {
         if let Some(ref rc_node) = root {
             let node = rc_node.borrow();
-            if val == node.val {
-                return Some(Rc::clone(&rc_node));
-            } else if val < node.val {
-                return Solution::search_bst(node.left.clone(), val);
-            } else {
-                return Solution::search_bst(node.right.clone(), val);
-            }
+            return match val.cmp(&node.val) {
+                Ordering::Equal => Some(Rc::clone(&rc_node)),
+                Ordering::Greater => Solution::search_bst(node.right.clone(), val),
+                Ordering::Less => Solution::search_bst(node.left.clone(), val),
+            };
         }
-
         None
     }
 }

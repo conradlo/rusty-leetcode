@@ -19,7 +19,7 @@ impl MyCircularQueue {
         MyCircularQueue {
             head: 0,
             tail: 0,
-            size: size,
+            size,
             array: vec![0; size],
             _empty: true,
             _new_init: true,
@@ -39,7 +39,7 @@ impl MyCircularQueue {
             self.tail = (self.tail + 1) % self.size;
         }
         self.array[self.tail] = value;
-        return true;
+        true
     }
     /** Delete an element from the circular queue. Return true if the operation is successful. */
     fn de_queue(&mut self) -> bool {
@@ -50,7 +50,7 @@ impl MyCircularQueue {
             self._empty = true;
         }
         self.head = (self.head + 1) % self.size;
-        return true;
+        true
     }
     /** Get the front item from the queue. */
     fn front(&self) -> i32 {

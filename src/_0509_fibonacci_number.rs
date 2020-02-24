@@ -19,7 +19,7 @@ impl Solution {
             return n;
         }
         // recurrence relation
-        return Solution::fib_v1(n - 1) + Solution::fib_v1(n - 2);
+        Solution::fib_v1(n - 1) + Solution::fib_v1(n - 2)
     }
 
     // recursion + memoization
@@ -36,12 +36,12 @@ impl Solution {
         // recurrence relation
         let ans = Solution::v2_helper(n - 1, cache) + Solution::v2_helper(n - 2, cache);
         cache[usize_n] = ans;
-        return ans;
+        ans
     }
 
     pub fn fib_v2(n: i32) -> i32 {
         let mut cache = vec![-1; n as usize + 1];
-        return Solution::v2_helper(n, &mut cache);
+        Solution::v2_helper(n, &mut cache)
     }
 
     pub fn fib_v3(n: i32) -> i32 {
@@ -111,12 +111,12 @@ impl Solution {
         // use an array instead
         let pre_cal = [
             0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181,
-            6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811, 514229, 832040,
+            6765, 10946, 17711, 28657, 46368, 75025, 121_393, 196_418, 317_811, 514_229, 832_040,
         ];
         if n < 31 {
             return pre_cal[n as usize];
         }
-        let mut fib_pair: (i32, i32) = (514229, 832040);
+        let mut fib_pair: (i32, i32) = (514_229, 832_040);
         for _ in 31..n + 1 {
             fib_pair = (fib_pair.1, fib_pair.0 + fib_pair.1);
         }
@@ -163,14 +163,14 @@ mod tests {
             (23, 28657),
             (24, 46368),
             (25, 75025),
-            (26, 121393),
-            (27, 196418),
-            (28, 317811),
-            (29, 514229),
-            (30, 832040),
-            (31, 1346269),
-            (32, 2178309),
-            (40, 102334155),
+            (26, 121_393),
+            (27, 196_418),
+            (28, 317_811),
+            (29, 514_229),
+            (30, 832_040),
+            (31, 1_346_269),
+            (32, 2_178_309),
+            (40, 102_334_155),
         ]
     }
 
@@ -227,7 +227,7 @@ mod tests {
     fn bench_fib_v1(b: &mut Bencher) {
         b.iter(|| {
             let result = Solution::fib_v1(30);
-            assert_eq!(result, 832040);
+            assert_eq!(result, 832_040);
         });
     }
 
@@ -235,7 +235,7 @@ mod tests {
     fn bench_fib_v2(b: &mut Bencher) {
         b.iter(|| {
             let result = Solution::fib_v2(30);
-            assert_eq!(result, 832040);
+            assert_eq!(result, 832_040);
         });
     }
 
@@ -243,7 +243,7 @@ mod tests {
     fn bench_fib_v3(b: &mut Bencher) {
         b.iter(|| {
             let result = Solution::fib_v3(30);
-            assert_eq!(result, 832040);
+            assert_eq!(result, 832_040);
         });
     }
 
@@ -251,7 +251,7 @@ mod tests {
     fn bench_fib_v4(b: &mut Bencher) {
         b.iter(|| {
             let result = Solution::fib_v4(30);
-            assert_eq!(result, 832040);
+            assert_eq!(result, 832_040);
         });
     }
 
@@ -259,7 +259,7 @@ mod tests {
     fn bench_fib_v5(b: &mut Bencher) {
         b.iter(|| {
             let result = Solution::fib_v5(30);
-            assert_eq!(result, 832040);
+            assert_eq!(result, 832_040);
         });
     }
 
@@ -267,7 +267,7 @@ mod tests {
     fn bench_fib_v6(b: &mut Bencher) {
         b.iter(|| {
             let result = Solution::fib_v6(30);
-            assert_eq!(result, 832040);
+            assert_eq!(result, 832_040);
         });
     }
 }
