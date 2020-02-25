@@ -20,7 +20,7 @@ impl Solution {
         // memoization
         let cache_ans = matrix[row_index][item_index];
         if cache_ans != 0 {
-            return cache_ans;
+            cache_ans
         } else {
             // recurrence relation
             let ans = Solution::v1_helper(row_index - 1, item_index - 1, matrix)
@@ -28,7 +28,7 @@ impl Solution {
 
             matrix[row_index][item_index] = ans;
 
-            return ans;
+            ans
         }
     }
     pub fn get_row_v1(row_index: i32) -> Vec<i32> {
@@ -37,8 +37,8 @@ impl Solution {
         // need to utilize memoization
         // otherwise it is too slow when row_index == 33
         let mut cache = vec![vec![0; row]; row];
-        for i in 0..row {
-            ans[i] = Solution::v1_helper(row_index as usize, i, &mut cache);
+        for (i, row_ans) in ans.iter_mut().enumerate() {
+            *row_ans = Solution::v1_helper(row_index as usize, i, &mut cache);
         }
         ans
     }

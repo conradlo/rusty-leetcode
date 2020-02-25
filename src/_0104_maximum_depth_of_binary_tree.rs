@@ -57,11 +57,11 @@ impl Solution {
             0
         };
         // avoid using std::cmp:max
-        return 1 + if left_side_depth > right_side_depth {
+        1 + if left_side_depth > right_side_depth {
             left_side_depth
         } else {
             right_side_depth
-        };
+        }
     }
     pub fn max_depth_recursive_v2(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
         // this is an improved(?) version of recursive v1
@@ -104,35 +104,32 @@ mod tests {
     use super::*;
     use test::Bencher;
 
-    fn build_tree(list: &Vec<Option<i32>>) -> Option<Rc<RefCell<TreeNode>>> {
-        if list.len() < 1 {
+    fn build_tree(list: &[Option<i32>]) -> Option<Rc<RefCell<TreeNode>>> {
+        if list.is_empty() {
             return None;
         }
         let mut nodes: Vec<Option<Rc<RefCell<TreeNode>>>> = vec![None; list.len()];
         let mut cursor = 0; // !important
         for i in 0..list.len() {
-            match list[i] {
-                Some(k) => {
-                    let tree_node = nodes[i]
-                        .clone()
-                        .unwrap_or(Rc::new(RefCell::new(TreeNode::new(k))));
-                    if let Some(Some(ref left)) = list.get(cursor + 1) {
-                        let left_node = Rc::new(RefCell::new(TreeNode::new(*left)));
-                        nodes[cursor + 1] = Some(Rc::clone(&left_node));
-                        tree_node.borrow_mut().left = Some(left_node);
-                    }
-                    if let Some(Some(ref right)) = list.get(cursor + 2) {
-                        let right_node = Rc::new(RefCell::new(TreeNode::new(*right)));
-                        nodes[cursor + 2] = Some(Rc::clone(&right_node));
-                        tree_node.borrow_mut().right = Some(right_node);
-                    }
-                    nodes[i] = Some(tree_node);
-                    cursor += 2;
-                    if cursor > list.len() {
-                        break;
-                    }
+            if let Some(k) = list[i] {
+                let tree_node = nodes[i]
+                    .clone()
+                    .unwrap_or_else(|| Rc::new(RefCell::new(TreeNode::new(k))));
+                if let Some(Some(ref left)) = list.get(cursor + 1) {
+                    let left_node = Rc::new(RefCell::new(TreeNode::new(*left)));
+                    nodes[cursor + 1] = Some(Rc::clone(&left_node));
+                    tree_node.borrow_mut().left = Some(left_node);
                 }
-                None => (),
+                if let Some(Some(ref right)) = list.get(cursor + 2) {
+                    let right_node = Rc::new(RefCell::new(TreeNode::new(*right)));
+                    nodes[cursor + 2] = Some(Rc::clone(&right_node));
+                    tree_node.borrow_mut().right = Some(right_node);
+                }
+                nodes[i] = Some(tree_node);
+                cursor += 2;
+                if cursor > list.len() {
+                    break;
+                }
             }
         }
         nodes[0].clone()

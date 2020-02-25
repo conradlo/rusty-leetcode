@@ -30,7 +30,7 @@ impl Solution {
     pub fn preorder_traversal_recursive(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
         let mut traverse = vec![];
         if let Some(node) = root {
-            let ref node = node.borrow();
+            let node = node.borrow();
             traverse.push(node.val);
             traverse.append(&mut Solution::preorder_traversal_recursive(
                 node.left.clone(),
@@ -72,7 +72,7 @@ impl Solution {
                 stack.push(Rc::clone(&left_node));
             }
         }
-        return ans;
+        ans
     }
 }
 // @lc code=end
@@ -81,7 +81,7 @@ impl Solution {
 mod tests {
     use super::*;
 
-    fn build_tree(list: &Vec<Option<i32>>) -> Option<Rc<RefCell<TreeNode>>> {
+    fn build_tree(list: &[Option<i32>]) -> Option<Rc<RefCell<TreeNode>>> {
         let l = list.len();
         if l < 1 {
             return None;

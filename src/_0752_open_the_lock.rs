@@ -37,8 +37,8 @@ pub fn open_lock(deadends: Vec<String>, target: String) -> i32 {
             let mut next: [[char; 4]; 8] = [['0'; 4]; 8];
             for (i, c) in head.char_indices() {
                 let n = char_to_digit_map.get(&c).unwrap();
-                for j in 0..4 {
-                    next[j][i] = if j == i {
+                for (j, combo) in next.iter_mut().enumerate().take(4) {
+                    combo[i] = if j == i {
                         let k = (n + 1) % 10;
                         *digit_to_char_map.get(&k).unwrap()
                     } else {
@@ -58,7 +58,7 @@ pub fn open_lock(deadends: Vec<String>, target: String) -> i32 {
             // push all 8 nodes onto the queue
             for node in &next {
                 // convert [char] to String
-                let key = node.into_iter().collect::<String>();
+                let key = node.iter().collect::<String>();
                 queue.push_back((level + 1, key));
             }
         }

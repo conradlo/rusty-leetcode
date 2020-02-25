@@ -23,7 +23,7 @@ pub fn bfs(matrix: &mut Vec<Vec<char>>, row: usize, col: usize, sr: usize, sc: u
 }
 pub fn num_islands(grid: Vec<Vec<char>>) -> i32 {
     let mut grid = grid;
-    if grid.len() == 0 {
+    if grid.is_empty() {
         return 0;
     }
     let row_count = grid.len();

@@ -35,7 +35,7 @@ impl Solution {
                 }
             }
         }
-        return room_count == no_of_rooms;
+        room_count == no_of_rooms
     }
 
     // TODO: DFS
@@ -77,7 +77,7 @@ mod tests {
             }
             rand_rooms.push(next);
         }
-        return rand_rooms;
+        rand_rooms
     }
     fn gen_large_disconnected_rooms() -> Vec<Vec<i32>> {
         let mut rng = rand::thread_rng();
@@ -95,19 +95,15 @@ mod tests {
                     } else {
                         next.push(k - 1);
                     }
+                } else if k % 2 == 0 && k != 0 {
+                    next.push(k - 1);
                 } else {
-                    if k % 2 == 0 {
-                        if k != 0 {
-                            next.push(k - 1);
-                        }
-                    } else {
-                        next.push(k);
-                    }
+                    next.push(k);
                 }
             }
             rand_rooms.push(next);
         }
-        return rand_rooms;
+        rand_rooms
     }
 
     #[bench]

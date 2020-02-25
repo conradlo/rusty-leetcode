@@ -8,7 +8,7 @@ pub fn flood_fill_1(image: Vec<Vec<i32>>, sr: i32, sc: i32, new_color: i32) -> V
 
     let mut stack: Vec<(usize, usize)> = Vec::new();
     stack.push((sr as usize, sc as usize));
-    while stack.len() > 0 {
+    while !stack.is_empty() {
         let top = stack.last().unwrap();
         let r = top.0;
         let c = top.1;
@@ -80,7 +80,7 @@ pub fn flood_fill(image: Vec<Vec<i32>>, sr: i32, sc: i32, new_color: i32) -> Vec
 
     let mut stack = vec![(start_r, start_c)];
 
-    while stack.len() > 0 {
+    while !stack.is_empty() {
         if let Some(&(r, c)) = stack.last() {
             // by checking the pixel's color we avoid DFS on
             // 1. visited pixels

@@ -3,9 +3,7 @@ extern "C" {
 }
 
 fn rust_adder(x: i32, y: i32) -> i32 {
-    unsafe {
-        return adder(x, y);
-    }
+    unsafe { adder(x, y) }
 }
 
 // cargo test cpp

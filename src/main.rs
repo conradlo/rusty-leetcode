@@ -1,5 +1,6 @@
 #![feature(test)] // for `cargo bench`
 #![allow(dead_code)] // allow dead code at crate-level
+#![warn(clippy::all)] // show linter warnings
 
 // import code in main.rs such that `cargo test` will run all tests inside these modules
 mod _0001_two_sum;

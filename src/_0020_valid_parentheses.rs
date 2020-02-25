@@ -29,7 +29,7 @@ pub fn is_valid(s: String) -> bool {
         }
         // println!("{}", c);
     }
-    return stack.len() == 0;
+    stack.is_empty()
 }
 
 // cargo watch -x "test _0020_ -- --nocapture"

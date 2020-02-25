@@ -11,30 +11,31 @@ impl Solution {
     // 32ms 3.1 MB
     pub fn update_matrix_v1(matrix: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
         // BFS on each cell O(n^2)
-        let row = matrix.len();
-        if row < 1 {
+        let row_count = matrix.len();
+        if row_count < 1 {
             return vec![];
         }
-        let col = matrix[0].len();
-        let mut ans = vec![vec![-1; col]; row];
-        for r_idx in 0..row {
-            for c_idx in 0..col {
+        let col_count = matrix[0].len();
+        let mut ans = vec![vec![-1; col_count]; row_count];
+        for (r_idx, row) in ans.iter_mut().enumerate() {
+            for (c_idx, cell) in row.iter_mut().enumerate() {
                 // println!("({},{}): {}", r_idx, c_idx, matrix[r_idx][c_idx]);
                 let mut q: VecDeque<(i32, (usize, usize))> = VecDeque::new();
                 q.push_back((0, (r_idx, c_idx)));
                 while let Some((step, (r, c))) = q.pop_front() {
                     if matrix[r][c] == 0 {
                         // println!("> ({}, {}) : {}", r, c, step);
-                        ans[r_idx][c_idx] = step;
+                        // ans[r_idx][c_idx] = step;
+                        *cell = step;
                         break;
                     }
-                    if r + 1 < row {
+                    if r + 1 < row_count {
                         q.push_back((step + 1, (r + 1, c)));
                     }
                     if r > 0 {
                         q.push_back((step + 1, (r - 1, c)));
                     }
-                    if c + 1 < col {
+                    if c + 1 < col_count {
                         q.push_back((step + 1, (r, c + 1)));
                     }
                     if c > 0 {
@@ -43,7 +44,12 @@ impl Solution {
                 }
             }
         }
-        return ans;
+        ans
+    }
+    pub fn update_matrix_v2(_matrix: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
+        // if matrix[r][c] = 0 then ans[r][c] = 0
+        // else ans[r][c] = 1 + min(matrix[r-1][c], matrix[r+1][c], matrix[r][c-1], matrix[r][c+1])
+        vec![]
     }
 }
 // @lc code=end
@@ -56,9 +62,12 @@ mod tests {
     use rand::prelude::*;
     use test::Bencher;
 
-    fn get_test_cases() -> Vec<(Vec<Vec<i32>>, Vec<Vec<i32>>)> {
+    type Input = Vec<Vec<i32>>;
+    type Expect = Vec<Vec<i32>>;
+
+    fn get_test_cases() -> Vec<(Input, Expect)> {
         // (input, expect)
-        let testcases: Vec<(Vec<Vec<i32>>, Vec<Vec<i32>>)> = vec![
+        vec![
             (vec![], vec![]),
             (vec![vec![]], vec![vec![]]),
             (vec![vec![0]], vec![vec![0]]),
@@ -109,8 +118,7 @@ mod tests {
                     vec![9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
                 ],
             ),
-        ];
-        return testcases;
+        ]
     }
 
     #[test]
@@ -125,9 +133,9 @@ mod tests {
     pub fn bench_update_matrix_v1(b: &mut Bencher) {
         let mut rng = rand::thread_rng();
         let mut rand_matrix: Vec<Vec<i32>> = vec![vec![0; 100]; 100];
-        for i in 0..10 {
-            for j in 0..10 {
-                rand_matrix[i][j] = rng.gen_range(0, 1);
+        for row in rand_matrix.iter_mut() {
+            for entry in row.iter_mut() {
+                *entry = rng.gen_range(0, 1);
             }
         }
         b.iter(|| {
