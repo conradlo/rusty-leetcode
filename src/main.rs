@@ -4,6 +4,7 @@
 // import code in main.rs such that `cargo test` will run all tests inside these modules
 mod _0001_two_sum;
 mod _0020_valid_parentheses;
+mod _0021_merge_two_sorted_lists;
 mod _0024_swap_nodes_in_pairs;
 mod _0070_climbing_stairs;
 mod _0094_binary_tree_inorder_traversal;
