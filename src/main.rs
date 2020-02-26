@@ -33,6 +33,7 @@ mod _0700_search_in_a_binary_search_tree;
 mod _0733_flood_fill;
 mod _0739_daily_temperatures;
 mod _0752_open_the_lock;
+mod _0779_k_th_symbol_in_grammar;
 mod _0841_keys_and_rooms;
 mod cpp;
 mod other;

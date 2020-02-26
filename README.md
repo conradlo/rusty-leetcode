@@ -32,6 +32,7 @@
 | 0733 |                         Flood Fill                         |    Easy    |  0 ms   |    1.9 MB    |         |             |
 | 0739 |                     Daily Temperatures                     |   Medium   |  20 ms  |    2.8 MB    |         |             |
 | 0752 |                       Open the Lock                        |   Medium   | 108 ms  |    3.5 MB    |   🔥    |             |
+| 0779 |                   K-th Symbol in Grammar                   |   Medium   |  0 ms   |    2.1 MB    |   ⭐    |             |
 | 0841 |                       Keys and Rooms                       |   Medium   |  0 ms   |    2.1 MB    |         |             |
 
 ---
