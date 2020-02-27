@@ -86,7 +86,8 @@ impl Solution {
         let mut fibs: Vec<i32> = vec![0; usize_n + 1];
         fibs[1] = 1;
         // integer suffix
-        for i in 2usize..usize_n + 1 {
+        // ..= in rust means inclusive range end
+        for i in 2usize..=usize_n {
             fibs[i] = fibs[i - 1] + fibs[i - 2];
         }
         fibs[usize_n]
@@ -99,7 +100,7 @@ impl Solution {
             return n;
         }
         let mut fib_pair: (i32, i32) = (0, 1);
-        for _ in 2..n + 1 {
+        for _ in 2..=n {
             fib_pair = (fib_pair.1, fib_pair.0 + fib_pair.1);
         }
         fib_pair.1
@@ -117,7 +118,7 @@ impl Solution {
             return pre_cal[n as usize];
         }
         let mut fib_pair: (i32, i32) = (514_229, 832_040);
-        for _ in 31..n + 1 {
+        for _ in 31..=n {
             fib_pair = (fib_pair.1, fib_pair.0 + fib_pair.1);
         }
         fib_pair.1

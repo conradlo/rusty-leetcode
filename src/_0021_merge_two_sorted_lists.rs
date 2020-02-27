@@ -26,9 +26,10 @@ impl Solution {
         l1: Option<Box<ListNode>>,
         l2: Option<Box<ListNode>>,
     ) -> Option<Box<ListNode>> {
-        return match (l1, l2) {
+        // implicit return
+        match (l1, l2) {
             (Some(l_node), Some(r_node)) => {
-                return if l_node.val <= r_node.val {
+                if l_node.val <= r_node.val {
                     let mut hd = ListNode::new(l_node.val);
                     hd.next = Solution::merge_two_lists(l_node.next, Some(r_node));
                     Some(Box::new(hd))
@@ -36,13 +37,15 @@ impl Solution {
                     let mut hd = ListNode::new(r_node.val);
                     hd.next = Solution::merge_two_lists(Some(l_node), r_node.next);
                     Some(Box::new(hd))
-                };
+                }
             }
             (Some(l_node), None) => Some(l_node),
             (None, Some(r_node)) => Some(r_node),
             (None, None) => None,
-        };
+        }
     }
+
+    // can do it iteratively?
 }
 // @lc code=end
 

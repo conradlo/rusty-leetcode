@@ -45,7 +45,7 @@ impl Solution {
             let left_inorder = &inorder[0..cursor];
             let right_inorder = &inorder[cursor + 1..]; // cursor + 1, skip root
 
-            let left_preorder = &preorder[1..left_inorder.len() + 1]; // start from 1, skip root's val
+            let left_preorder = &preorder[1..=left_inorder.len()]; // start from 1, skip root's val
             let right_preorder = &preorder[(left_inorder.len() + 1)..];
 
             root.left = Solution::build_tree(left_preorder.to_vec(), left_inorder.to_vec());
