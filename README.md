@@ -34,6 +34,7 @@
 | 0752 |                       Open the Lock                        |   Medium   | 108 ms  |    3.5 MB    |   🔥    |             |
 | 0779 |                   K-th Symbol in Grammar                   |   Medium   |  0 ms   |    2.1 MB    |   ⭐    |             |
 | 0841 |                       Keys and Rooms                       |   Medium   |  0 ms   |    2.1 MB    |         |             |
+| 0912 |                       Sort an Array                        |   Medium   |  20 ms  |    2.9 MB    |   🔥    |             |  |
 
 ---
 
