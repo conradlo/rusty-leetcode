@@ -34,6 +34,7 @@ mod _0733_flood_fill;
 mod _0739_daily_temperatures;
 mod _0752_open_the_lock;
 mod _0779_k_th_symbol_in_grammar;
+mod _0836_rectangle_overlap;
 mod _0841_keys_and_rooms;
 mod _0912_sort_an_array;
 mod cpp;
