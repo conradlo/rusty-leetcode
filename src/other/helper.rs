@@ -20,7 +20,7 @@ impl TreeNode {
     }
 }
 
-fn build_tree(list: &[Option<i32>]) -> Option<Rc<RefCell<TreeNode>>> {
+pub fn build_tree(list: &[Option<i32>]) -> Option<Rc<RefCell<TreeNode>>> {
     if list.is_empty() {
         return None;
     }

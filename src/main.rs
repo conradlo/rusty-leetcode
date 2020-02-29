@@ -9,6 +9,7 @@ mod _0021_merge_two_sorted_lists;
 mod _0024_swap_nodes_in_pairs;
 mod _0070_climbing_stairs;
 mod _0094_binary_tree_inorder_traversal;
+mod _0098_validate_binary_search_tree;
 mod _0101_symmetric_tree;
 mod _0102_binary_tree_level_order_traversal;
 mod _0104_maximum_depth_of_binary_tree;
