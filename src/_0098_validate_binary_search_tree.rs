@@ -21,8 +21,8 @@ impl Solution {
     // the bst is in ascending order, stated in the question
     // beware of the values' bound, i.e. the i32::MIN case
     //
-    // Time: O(n) visit all node once
-    // Space: max size of the stack, O(log n) if tree is balanced, O(n) in worst case
+    // Time: O(n) visit all nodes once in worst case
+    // Space: max size of the stack, O(lg n) if tree is balanced, O(n) in worst case
     pub fn is_valid_bst_v1(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
         // iterative inorder traversal of a binary tree
         let mut stack: Vec<Rc<RefCell<TreeNode>>> = vec![];
@@ -54,8 +54,59 @@ impl Solution {
     }
 
     // 2. use bst's recursive definition
-    pub fn is_valid_bst_v2(_root: Option<Rc<RefCell<TreeNode>>>) -> bool {
-        false
+    // do not just check the value of left & right node
+    // need to check for left's max and right's min
+    // Time: O(n) DFS whole tree
+    // Space: max size of call stack, max O(n), O(lg n) for balanced tree
+    pub fn check_bst_node_recursive(
+        node: Option<Rc<RefCell<TreeNode>>>,
+    ) -> (Option<i32>, bool, Option<i32>) {
+        if let Some(rc_node) = node {
+            let node = rc_node.borrow();
+
+            let (left_min, is_valid_left_subtree, left_max) =
+                Solution::check_bst_node_recursive(node.left.clone());
+            let (right_min, is_valid_right_subtree, right_max) =
+                Solution::check_bst_node_recursive(node.right.clone());
+
+            let is_valid = match (left_max, right_min) {
+                (Some(left_max_val), None) => left_max_val < node.val,
+                (None, Some(right_min_val)) => node.val < right_min_val,
+                (Some(left_max_val), Some(right_min_val)) => {
+                    left_max_val < node.val && node.val < right_min_val
+                }
+                (None, None) => true,
+            };
+            let min_val = if let Some(left_min_val) = left_min {
+                if node.val < left_min_val {
+                    node.val
+                } else {
+                    left_min_val
+                }
+            } else {
+                node.val
+            };
+            let max_val = if let Some(right_max_val) = right_max {
+                if right_max_val < node.val {
+                    node.val
+                } else {
+                    right_max_val
+                }
+            } else {
+                node.val
+            };
+            (
+                Some(min_val),
+                is_valid && is_valid_left_subtree && is_valid_right_subtree,
+                Some(max_val),
+            )
+        } else {
+            (None, true, None)
+        }
+    }
+    pub fn is_valid_bst_v2(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
+        let (_, is_valid, _) = Solution::check_bst_node_recursive(root);
+        is_valid
     }
 }
 // @lc code=end
@@ -66,9 +117,8 @@ mod tests {
     use super::*;
     use crate::other::helper::build_tree;
 
-    #[test]
-    fn test_is_valid_bst_v1() {
-        let testcases: Vec<(Vec<Option<i32>>, bool)> = vec![
+    fn get_test_cases() -> Vec<(Vec<Option<i32>>, bool)> {
+        vec![
             (vec![], true),
             (vec![Some(1)], true),
             (vec![Some(1), Some(1), Some(1)], false),
@@ -139,11 +189,28 @@ mod tests {
                 ],
                 true,
             ),
-        ];
+            (
+                vec![Some(10), Some(5), Some(15), None, None, Some(6), Some(20)],
+                false,
+            ),
+        ]
+    }
 
-        for (list, expect) in testcases {
+    #[test]
+    fn test_is_valid_bst_v1() {
+        for (list, expect) in get_test_cases() {
             let tree = build_tree(&list);
             let result = Solution::is_valid_bst_v1(tree);
+            assert_eq!(result, expect);
+        }
+    }
+
+    #[test]
+    fn test_is_valid_bst_v2() {
+        for (list, expect) in get_test_cases() {
+            // println!("{:?}", list);
+            let tree = build_tree(&list);
+            let result = Solution::is_valid_bst_v2(tree);
             assert_eq!(result, expect);
         }
     }
