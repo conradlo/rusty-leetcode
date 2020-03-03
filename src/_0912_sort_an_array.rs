@@ -76,6 +76,41 @@ impl Solution {
         Solution::merge_sorted_vector_v1(&l_half, &r_half)
     }
 
+    // quick sort
+    pub fn sort_array_quick_sort(nums: Vec<i32>) -> Vec<i32> {
+        let length = nums.len();
+        let mut nums = nums;
+        // inplace
+        Solution::quick_sort(&mut nums, 0, length - 1);
+        nums
+    }
+
+    pub fn quick_sort(nums: &mut [i32], left: usize, right: usize) {
+        // base case, no items / 1 items
+        if left < right {
+            let p = Solution::partition(nums, left, right);
+            if p > 0 {
+                // prevent subtract with overflow
+                Solution::quick_sort(nums, left, p - 1);
+            }
+            Solution::quick_sort(nums, p + 1, right);
+        }
+    }
+
+    pub fn partition(nums: &mut [i32], left: usize, right: usize) -> usize {
+        let pivot = right; // use last item as pivot
+        let mut left_bound = left;
+        for i in left..right {
+            if nums[i] < nums[pivot] {
+                nums.swap(left_bound, i);
+                left_bound += 1;
+            }
+        }
+        // everything before 'left_bound' is smaller than nums[pivot]
+        nums.swap(left_bound, right);
+        left_bound
+    }
+
     pub fn sort_array(nums: Vec<i32>) -> Vec<i32> {
         //
         nums
@@ -132,6 +167,28 @@ mod tests {
         expect.sort_unstable();
         b.iter(|| {
             let result = Solution::merge_sort_top_down_recursive(rand_vector.clone());
+            assert_eq!(result, expect);
+        });
+    }
+
+    #[test]
+    fn test_quick_sort() {
+        for (input, expect) in get_test_cases() {
+            let result = Solution::sort_array_quick_sort(input);
+            assert_eq!(result, expect);
+        }
+    }
+    #[bench]
+    fn test_quick_sort_lg(b: &mut Bencher) {
+        let mut rng = rand::thread_rng();
+        let mut rand_vector: Vec<i32> = vec![0; 50_000];
+        for val in rand_vector.iter_mut() {
+            *val = rng.gen_range(-50_000, 50_000);
+        }
+        let mut expect = rand_vector.clone();
+        expect.sort_unstable();
+        b.iter(|| {
+            let result = Solution::sort_array_quick_sort(rand_vector.clone());
             assert_eq!(result, expect);
         });
     }
