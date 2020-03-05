@@ -39,6 +39,7 @@ mod _0779_k_th_symbol_in_grammar;
 mod _0836_rectangle_overlap;
 mod _0841_keys_and_rooms;
 mod _0912_sort_an_array;
+mod _0989_add_to_array_form_of_integer;
 mod cpp;
 mod other;
 

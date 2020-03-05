@@ -77,6 +77,7 @@ impl Solution {
     }
 
     // quick sort
+    // worst case of quick sort is just an insertion sort
     pub fn sort_array_quick_sort(nums: Vec<i32>) -> Vec<i32> {
         let length = nums.len();
         let mut nums = nums;
