@@ -39,6 +39,7 @@
 | 0841 |                       Keys and Rooms                       |   Medium   |  0 ms   |    2.1 MB    |         |             |
 | 0912 |                       Sort an Array                        |   Medium   |  8 ms   |    2.5 MB    |   🔥    | 2020/03/03  |
 | 0989 |                Add to Array-Form of Integer                |    Easy    |  12 ms  |    2.2 MB    |   🔥    |             |
+| 1266 |              Minimum Time Visiting All Points              |    Easy    |  12 ms  |    2.0 MB    |         |             |
 
 ---
 

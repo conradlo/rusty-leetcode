@@ -40,6 +40,7 @@ mod _0836_rectangle_overlap;
 mod _0841_keys_and_rooms;
 mod _0912_sort_an_array;
 mod _0989_add_to_array_form_of_integer;
+mod _1266_minimum_time_visiting_all_points;
 mod cpp;
 mod other;
 
