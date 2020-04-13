@@ -25,6 +25,7 @@ mod _0200_number_of_islands;
 mod _0206_reverse_linked_list;
 mod _0279_perfect_squares;
 mod _0344_reverse_string;
+mod _0377_combination_sum_iv;
 mod _0394_decode_string;
 mod _0494_target_sum;
 mod _0509_fibonacci_number;
