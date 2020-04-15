@@ -81,7 +81,7 @@ impl Solution {
         Solution::v3_helper(&nums, target, &mut memo)
     }
 
-    // bottom up dp
+    // bottom up, "pull" dp
     // O(c * n)
     pub fn combination_sum4_v4(nums: Vec<i32>, target: i32) -> i32 {
         let target = target as usize;
@@ -90,15 +90,35 @@ impl Solution {
         for i in 1..=target {
             for &num in &nums {
                 if i >= num as usize {
+                    // "pull" from previous subproblems'
                     dp[i] += dp[i - num as usize];
                 }
             }
         }
         dp.pop().unwrap()
     }
+
+    // bottom up, "forward"/"push" dp
+    pub fn combination_sum4_v5(nums: Vec<i32>, target: i32) -> i32 {
+        let target = target as usize;
+        let mut dp = vec![0; target + 1];
+        dp[0] = 1;
+        for i in 0..=target {
+            for &num in nums.iter() {
+                let x = num as usize;
+                if i + x < dp.len() {
+                    // "push" i's subproblem into future i + x's
+                    dp[i + x] += dp[i];
+                }
+            }
+        }
+        //
+        dp.pop().unwrap()
+    }
 }
 // @lc code=end
 
+// cargo watch -x "test _0377_ -- --nocapture"
 extern crate test;
 #[cfg(test)]
 mod tests {
@@ -198,6 +218,28 @@ mod tests {
         for (nums, target, expect) in testcases {
             b.iter(|| {
                 let result = Solution::combination_sum4_v4(nums.clone(), target);
+                assert_eq!(result, expect);
+            });
+        }
+    }
+    #[bench]
+    fn run_test_cases_v5_and_bench(b: &mut Bencher) {
+        // (nums, target, expect)
+        let testcases = get_test_cases();
+        for (nums, target, expect) in testcases {
+            b.iter(|| {
+                let result = Solution::combination_sum4_v5(nums.clone(), target);
+                assert_eq!(result, expect);
+            });
+        }
+    }
+    #[bench]
+    fn run_test_cases_v5_and_bench_large(b: &mut Bencher) {
+        // (nums, target, expect)
+        let testcases = get_test_cases_large();
+        for (nums, target, expect) in testcases {
+            b.iter(|| {
+                let result = Solution::combination_sum4_v5(nums.clone(), target);
                 assert_eq!(result, expect);
             });
         }
