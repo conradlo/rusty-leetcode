@@ -30,6 +30,7 @@ mod _0377_combination_sum_iv;
 mod _0394_decode_string;
 mod _0494_target_sum;
 mod _0509_fibonacci_number;
+mod _0518_coin_change_2;
 mod _0542_01_matrix;
 mod _0599_minimum_index_sum_of_two_lists;
 mod _0622_design_circular_queue;

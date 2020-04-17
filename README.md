@@ -29,6 +29,7 @@
 | 0394 |                       Decode String                        |   Medium   |  0 ms   |    1.9 MB    |   ⭐    |             |
 | 0494 |                         Target Sum                         |   Medium   |  8 ms   |    2.2 MB    |  ⭐🔥⏲  | 2020/02/19  |
 | 0509 |                      Fibonacci Number                      |    Easy    |  0 ms   |    1.9 MB    |         |             |
+| 0518 |                       Coin Change 2                        |   Medium   |  8 ms   |    6.4 MB    |   ⭐    |             |
 | 0542 |                         01 Matrix                          |   Medium   |  32 ms  |    3.1 MB    |   🔥    |             |
 | 0599 |               Minimum Index Sum of Two Lists               |    Easy    |  12 ms  |    2.3 MB    |         |             |
 | 0622 |                   Design Circular Queue                    |   Medium   |  4 ms   |    2.2 MB    |         |             |
@@ -51,6 +52,7 @@
    - https://github.com/skygragon/leetcode-cli
 1. login LeetCode via `leetcode-cli`
    - Cannot login in LeetCode via leetcode-cli? https://github.com/jdneo/vscode-leetcode/issues/478#issuecomment-564757098k
+   - Problem using `leecode` cmd? Try `rm` the `$HOME/.lc` folder. https://github.com/jdneo/vscode-leetcode/issues/283
 1. Fetch LeetCode problem by Problem ID (note: do not track in these files)
    ```sh
    # leetcode show {problem_id} -g -l {language}
